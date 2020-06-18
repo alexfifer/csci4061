@@ -4,8 +4,8 @@
                             ________________
 
 
-- Name: (FILL THIS in)
-- NetID: (THE kauf0095 IN kauf0095@umn.edu)
+- Name: Alex Fifer
+- NetID: fifer011
 
 Write your answers to the questions below directly in this text file.
 Submit the whole text file while taking the associated quiz.
@@ -41,7 +41,29 @@ PROBLEM 1: Compile and Run via make
   ,----
   | > gcc -o coll collatz_funcs.c collatz_main.c 
   `----
-
+-----------------------------------------------
+fifer@Fifer:~/Class/csci4061/hw01-code/collatz$ gcc -o coll collatz_funcs.c collatz_main.c
+fifer@Fifer:~/Class/csci4061/hw01-code/collatz$ ./coll
+Enter the starting integer:
+>> 17
+The next value in the Collatz sequence is 52
+Show output of steps (0:NO, any other int: yes):
+>> 1   
+Step 0: 17
+Step 1: 52
+Step 2: 26
+Step 3: 13
+Step 4: 40
+Step 5: 20
+Step 6: 10
+Step 7: 5
+Step 8: 16
+Step 9: 8
+Step 10: 4
+Step 11: 2
+Step 12: 1
+The starting value 17 converged to 1 in 12 steps
+------------------------------------------------
 
 (B) Use of Makefiles
 ~~~~~~~~~~~~~~~~~~~~
@@ -363,6 +385,36 @@ PROBLEM 2: Create a `Makefile'
   file for this project but the tests depend on the `op_main' program as
   shown in the last few demo lines).
 
+------------------------------------------------
+# Makefile for mat-product
+CFLAGS = -Wall -g
+CC     = gcc $(CFLAGS)
+
+all : op_main
+
+op_main.o : op_main.c mat.h
+	$(CC) -c op_main.c
+
+outer_product.o : outer_product.c mat.h
+	$(CC) -c $<
+
+
+free_matrix.o : free_matrix.c mat.h
+	$(CC) -c $<
+
+test : op_main
+	@chmod u+x testy
+	./testy test_outer_product.org $(testnum)
+
+
+op_main : op_main.o outer_product.o free_matrix.o
+	$(CC) -o op_main free_matrix.o outer_product.o op_main.o
+	@echo op_main is ready
+
+clean:
+	rm -f op_main test_collatz *.o
+
+------------------------------------------------
 
 Understanding the Code
 ======================
