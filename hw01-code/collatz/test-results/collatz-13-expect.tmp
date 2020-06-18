@@ -1,0 +1,6 @@
+Enter the starting integer:
+>> 5
+The next value in the Collatz sequence is 16
+Show output of steps (0:NO, any other int: yes):
+>> 0
+The starting value 5 converged to 1 in 5 steps

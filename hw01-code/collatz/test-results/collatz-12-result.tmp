@@ -1,0 +1,54 @@
+(TEST 12) collatz_steps() from 14
+COMMENTS:
+Runs collatz_next(14, 5), should return steps with some lines of
+output. Note that the '5' is non-zero which should trigger output.
+
+
+program: ./test_collatz steps 14 5
+Failure messages:
+- FAILURE: Output Mismatch at lines marked
+
+--- Side by Side Differences ---
+- Expect output in: test-results/collatz-12-expect.tmp
+- Acutal output in: test-results/collatz-12-actual.tmp
+- Differing lines have a character like '|' in the middle\n
+==== EXPECT ====               ==== ACTUAL ====            
+running collatz_steps(14, 5)   running collatz_steps(14, 5)
+Step 0: 14                     Step 0: 14
+Step 1: 7                    <
+Step 2: 22                   <
+Step 3: 11                   <
+Step 4: 34                   <
+Step 5: 17                   <
+Step 6: 52                   <
+Step 7: 26                   <
+Step 8: 13                   <
+Step 9: 40                   <
+Step 10: 20                  <
+Step 11: 10                  <
+Step 12: 5                   <
+Step 13: 16                  <
+Step 14: 8                   <
+Step 15: 4                   <
+Step 16: 2                   <
+Step 17: 1                   <
+returned: 17                   returned: 17
+--- Line Differences ---
+EXPECT:   3) Step 1: 7
+EXPECT:   4) Step 2: 22
+EXPECT:   5) Step 3: 11
+EXPECT:   6) Step 4: 34
+EXPECT:   7) Step 5: 17
+EXPECT:   8) Step 6: 52
+EXPECT:   9) Step 7: 26
+EXPECT:  10) Step 8: 13
+EXPECT:  11) Step 9: 40
+EXPECT:  12) Step 10: 20
+EXPECT:  13) Step 11: 10
+EXPECT:  14) Step 12: 5
+EXPECT:  15) Step 13: 16
+EXPECT:  16) Step 14: 8
+EXPECT:  17) Step 15: 4
+EXPECT:  18) Step 16: 2
+EXPECT:  19) Step 17: 1
+

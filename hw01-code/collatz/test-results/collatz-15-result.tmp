@@ -1,0 +1,41 @@
+(TEST 15) collatz_main session from 12
+COMMENTS:
+Run collatz_main from 11, 7 for verbose input should lead to a bunch
+of lines of output.
+
+program: ./collatz_main -echo
+Failure messages:
+- FAILURE: Output Mismatch at lines marked
+
+--- Side by Side Differences ---
+- Expect output in: test-results/collatz-15-expect.tmp
+- Acutal output in: test-results/collatz-15-actual.tmp
+- Differing lines have a character like '|' in the middle\n
+==== EXPECT ====                                   ==== ACTUAL ====                                
+Enter the starting integer:                        Enter the starting integer:
+>> 12                                              >> 12
+The next value in the Collatz sequence is 6        The next value in the Collatz sequence is 6
+Show output of steps (0:NO, any other int: yes):   Show output of steps (0:NO, any other int: yes):
+>> 7                                               >> 7
+Step 0: 12                                         Step 0: 12
+Step 1: 6                                        <
+Step 2: 3                                        <
+Step 3: 10                                       <
+Step 4: 5                                        <
+Step 5: 16                                       <
+Step 6: 8                                        <
+Step 7: 4                                        <
+Step 8: 2                                        <
+Step 9: 1                                        <
+The starting value 12 converged to 1 in 9 steps    The starting value 12 converged to 1 in 9 steps
+--- Line Differences ---
+EXPECT:   7) Step 1: 6
+EXPECT:   8) Step 2: 3
+EXPECT:   9) Step 3: 10
+EXPECT:  10) Step 4: 5
+EXPECT:  11) Step 5: 16
+EXPECT:  12) Step 6: 8
+EXPECT:  13) Step 7: 4
+EXPECT:  14) Step 8: 2
+EXPECT:  15) Step 9: 1
+

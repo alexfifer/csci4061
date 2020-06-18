@@ -1,0 +1,7 @@
+Enter the starting integer:
+>> 12
+The next value in the Collatz sequence is 6
+Show output of steps (0:NO, any other int: yes):
+>> 7
+Step 0: 12
+The starting value 12 converged to 1 in 9 steps

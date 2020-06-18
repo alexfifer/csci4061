@@ -1,0 +1,21 @@
+running collatz_steps(30, 1)
+Step 0: 30
+Step 1: 15
+Step 2: 46
+Step 3: 23
+Step 4: 70
+Step 5: 35
+Step 6: 106
+Step 7: 53
+Step 8: 160
+Step 9: 80
+Step 10: 40
+Step 11: 20
+Step 12: 10
+Step 13: 5
+Step 14: 16
+Step 15: 8
+Step 16: 4
+Step 17: 2
+Step 18: 1
+returned: 18
