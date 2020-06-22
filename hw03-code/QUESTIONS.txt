@@ -1,0 +1,191 @@
+                           _________________
+
+                            HW 03 QUESTIONS
+                           _________________
+
+
+- Name: (FILL THIS in)
+- NetID: (THE kauf0095 IN kauf0095@umn.edu)
+
+Write your answers to the questions below directly in this text file.
+HW quiz questions will be related to the questions in this file.
+
+
+PROBLEM 1 `wait_loop.c'
+=======================
+
+  Examine the C file `wait_loop.c'. It implements a primitive
+  interactive loop asking a user to type things while a child process
+  runs in the background. By default, the provided `sleep_print.c'
+  program is used which creates a delay before the program
+  finishes. Make sure to compile `sleep_print' then compile
+  `wait_loop.c' and experiment with its behavior.
+
+  Here is a brief demo.
+  ,----
+  | > gcc -o sleep_print sleep_print.c 
+  | > gcc wait_loop.c
+  | > ./a.out
+  | Type text then press enter to check on child:
+  | >> hello there
+  | Entered text: 'hello there'
+  | Waiting
+  | CHILD: Awake and Done 
+  | CHILD FINISHED: 
+  | 
+  | Type text then press enter to check on child:
+  | >> what?
+  | Entered text: 'what?'
+  | Waiting
+  | Child not finished: wait returned -1
+  | 
+  | Type text then press enter to check on child:
+  | >> stop
+  | Entered text: 'stop'
+  | Waiting
+  | Child not finished: wait returned -1
+  | 
+  | Type text then press enter to check on child:
+  | >>  Ctrl-c
+  | > 
+  `----
+
+
+A
+~
+
+  Alter the code so that when the child has completed execution, the
+  program breaks out of the loop and the program ends normally. Paste in
+  the code you used for this.
+
+
+B
+~
+
+  Adjust the code so that the exit status of the child process is
+  printed when it finishes. Make sure to use the macros
+  `WIFEXITED(status)' and `WEXITSTATUS(status)' to deal with the
+  `status' set by `waitpid()'.  Paste the code you added for your
+  answer.
+
+
+C
+~
+
+  Make changes so that if the user types in the string `quit', the
+  program exits immediately without waiting further for the
+  child. Example:
+  ,----
+  | > a.out
+  | Type text then press enter to check on child:
+  | >> quit
+  | Entered text: 'quit'
+  | Quitting
+  | Exiting wait_loop
+  | > CHILD: Awake and Done 
+  `----
+  Note that the child eventually prints output to the screen which is
+  fine.
+
+  You will need to check the user input using either the `strcmp()'
+  (unsafe) or `strncmp()' (safer) function. Do some research on this
+  function if it is unfamiliar as it will prove generally useful.
+
+  Paste the code you used below.
+
+
+D
+~
+
+  The current call to `waitpid()' blocks, pausing execution of the
+  parent process until the child finishes. Look up the option to pass to
+  `waitpid()' that will allow it to do a non-blocking wait which returns
+  immediately if the child is not finished. A sample behavior is below.
+  ,----
+  | > a.out
+  | Type text then press enter to check on child:
+  | >> stuff
+  | Entered text: 'stuff'
+  | Waiting
+  | Child not finished: wait returned 0
+  | 
+  | Type text then press enter to check on child:
+  | >> more stuff
+  | Entered text: 'more stuff'
+  | Waiting
+  | Child not finished: wait returned 0
+  | 
+  | Type text then press enter to check on child:
+  | >> CHILD: Awake and Done 
+  | Looks like you're finally up
+  | Entered text: 'Looks like you're finally up'
+  | Waiting
+  | CHILD FINISHED: Exit status 5
+  | Exiting wait_loop
+  | > 
+  `----
+
+  Paste your entire code for `wait_loop.c' below.
+
+
+PROBLEM 2 `append_all.c'
+========================
+
+  Examine the code in `append_all.c' which makes use of the `read()' and
+  `write()' I/O system calls in an interesting pattern.
+
+
+A
+~
+
+  Compile and run the program and experiment with entering data into it
+  and pressing 'Enter'. Start with simple single letter inputs and then
+  extend you inputs to longer strings.  Show your session and explain
+  why read() always seems to read one more character than you type.
+
+
+B
+~
+
+  Describe the initialize size of the array `input' in `append_all.c'
+  and how it changes over the run of the program.
+  - What standard C function is used to initially allocate memory for
+    `input'? How does it work and how much space does `input' initially
+    occupy?
+  - what C function is used to alter its size? How does it work?
+
+
+C
+~
+
+  Restart the `append_all.c' program and type the specific input below
+  in at the prompts. Show the output produced and describe *exactly how
+  many read() calls* result from entering this input. This should
+  solidify your understanding of the main loop in the program.
+
+  ,----
+  | > 123456
+  `----
+
+
+D
+~
+
+  In append_all.c, the read call is followed by a commented line:
+  ,----
+  |     int nread = read(STDIN_FILENO, input+cur_pos, max_read); // perform read()
+  |  // int nread = read(STDIN_FILENO, input, max_read);         // this read() call would be an error: why?
+  `----
+  This commented line contains a common error for those new to `read()'
+  system call or input accumulation in general.
+
+  Comment the current read() call and uncomment the line marked as an
+  error so that the code reads:
+  ,----
+  |  // int nread = read(STDIN_FILENO, input+cur_pos, max_read); // perform read()
+  |  int nread = read(STDIN_FILENO, input, max_read);            // this read() call would be an error: why?
+  `----
+
+  Recompile the program and run it entering various inputs. Describe why
+  this line is error and relate it to what the program now erroneously
+  produces for output.
