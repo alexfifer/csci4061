@@ -1,8 +1,0 @@
-running collatz_steps(5, 1)
-Step 0: 5
-Step 1: 16
-Step 2: 8
-Step 3: 4
-Step 4: 2
-Step 5: 1
-returned: 5
